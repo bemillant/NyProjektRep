@@ -1,6 +1,6 @@
 package Controller;
 
-import java.net.URL;
+//import java.net.URL;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -98,12 +98,22 @@ public class MediaDatabase {
     }
 
     //GetPicture
-    public URL getPicture(Media m) {
+    /* public URL getPicture(Media m) {
         if (m instanceof Movie) {
             java.net.URL imageText = getClass().getResource("/Data/filmplakater/" + m.title + ".jpg");
             return (imageText);
         } else {
             java.net.URL imageText = getClass().getResource("/Data/serieforsider/" + m.title + ".jpg");
+            return (imageText);
+        }
+    } */
+
+    public String getPicture(Media m) {
+        if (m instanceof Movie) {
+            String imageText = "Data/filmplakater/" + m.title + ".jpg";
+            return (imageText);
+        } else {
+            String imageText = "Data/serieforsider/" + m.title + ".jpg";
             return (imageText);
         }
     }
