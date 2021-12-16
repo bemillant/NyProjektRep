@@ -2,7 +2,7 @@ package Controller;
 
 import Brugerplatfrom.*;
 import javax.swing.*;
-//import java.awt.*;
+
 
 public class Controller {
 

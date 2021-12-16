@@ -3,17 +3,19 @@ package Brugerplatfrom;
 import javax.swing.*;
 
 import Controller.Media;
+import Controller.MediaDatabase;
 import Controller.MediaNotFoundException;
 import Controller.Movie;
 import Controller.Series;
 import Controller.User;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.BorderLayout;
 
-/*
-    TO-DO:
-    
-*/
+
 
 public class Home extends Panelbuilder {
 
@@ -22,22 +24,20 @@ public class Home extends Panelbuilder {
             "Comedy", "Horror", "Talk-show" };
 
     protected String[] users;
-
     Framebuilder f;
     JComboBox<String> genreList;
     JPanel headerPanel;
     JPanel footerPanel;
-
     JTextField searchBar;
-
     JComboBox<String> userComboBox;
-
     User user1;
+
 
     public Home(Framebuilder f, User user1) {
         this.f = f;
         this.user1 = user1;
         String[] users = { user1.getUserName() };
+
 
         GridBagConstraints c = new GridBagConstraints();
 
@@ -59,20 +59,19 @@ public class Home extends Panelbuilder {
         JPanel genreMenu = new JPanel();
         genreMenu.setBackground(new Color(57, 167, 132));
         genreList = new JComboBox<String>(genre);
+        genreList.addActionListener(e -> selectedGenre(getUser()));
         genreMenu.add(genreList);
         leftHeader.add(genreMenu);
 
-        JPanel randomMoviePanel = new JPanel();
-        randomMoviePanel.setBackground(new Color(57, 167, 132));
+        //RandomMediafunktion
+        JPanel randomMediaPanel = new JPanel();
+        randomMediaPanel.setBackground(new Color(57, 167, 132));
         JButton randomBtn = new JButton("Give me a random title to watch!");
         randomBtn.addActionListener(e -> giveRandomMedia(getUser()));
-        randomMoviePanel.add(randomBtn);
-        leftHeader.add(randomMoviePanel);
+        randomMediaPanel.add(randomBtn);
+        leftHeader.add(randomMediaPanel);
 
         headerPanel.add(leftHeader);
-
-        genreList.addActionListener(e -> selectedGenre(getUser()));
-        // -----------------------------------------------
 
         // Søgefunktion
         JPanel searchPanel = new JPanel();
@@ -83,17 +82,15 @@ public class Home extends Panelbuilder {
         headerPanel.add(searchPanel);
         searchBar.addActionListener(e -> searchTitle(getUser()));
 
-        // -------------------------
-
         // Userfunktion
         JPanel userPanel = new JPanel();
         userPanel.setBackground(new Color(57, 167, 132));
         userComboBox = new JComboBox<String>(users);
         userPanel.add(userComboBox);
         headerPanel.add(userPanel);
-        // -------------------------------
+        //------------------
 
-        // Footer som skal indeholde et langt panel som er min-liste
+        //----Footer som skal indeholde et langt panel som er min-liste----
         footerPanel = new JPanel();
         footerPanel.setBackground(new Color(255, 226, 194));
 
@@ -117,6 +114,7 @@ public class Home extends Panelbuilder {
         myList.getHorizontalScrollBar().setUnitIncrement(16); // Sætter hastigheden ved scroll
         myList.setBackground(new Color(255, 226, 194));
 
+        //Henter userens liste og tjekker om der er medier på den eller ej
         if (getUser().getList().size() == 0) {
             JLabel textLabel = new JLabel("Add a title to your list and you'll see it here!");
             myListPanel.add(textLabel);
@@ -134,10 +132,10 @@ public class Home extends Panelbuilder {
 
         footerPanel.add(myList, "Center");
 
-        // --------------------
-        JPanel indhold = new JPanel(); // Laver et panel der skal indeholde film billeder mm.
+        // -------Indholdpanel som skal indeholde film og serier------
+        JPanel indhold = new JPanel(); 
         c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = skærmOpløsning.height / 2; // Find ny højde
+        c.ipady = skærmOpløsning.height / 2; 
         c.weightx = 0.0;
         c.gridwidth = 3;
         c.gridx = 0;
@@ -150,6 +148,8 @@ public class Home extends Panelbuilder {
         indhold.add(mediePanel, "Center");
 
         // -------- Tilføjelse af de to hovedefunktioner - oversigt over alle film og serier
+
+        //Først film
         JButton button;
         ImageIcon image;
         JPanel movies = new JPanel();
@@ -172,6 +172,8 @@ public class Home extends Panelbuilder {
         filmPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         filmPanel.getVerticalScrollBar().setUnitIncrement(16); // Sætter hastigheden ved scroll
 
+
+        //Nu serier
         JPanel series = new JPanel();
         series.setLayout(new GridLayout(0, 4));
         for (int i = 0; i < mdb.getSeries().size(); i++) {
@@ -190,7 +192,7 @@ public class Home extends Panelbuilder {
         seriePanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         seriePanel.getVerticalScrollBar().setUnitIncrement(16); // Sætter hastigheden ved scroll
 
-        // Farve rundt om de to forskellige bokse - kan ændres til vores farve scheme
+        // Farve rundt om de to forskellige panels 
         filmPanel.setBackground(new Color(255, 238, 219));
         seriePanel.setBackground(new Color(255, 238, 219));
 

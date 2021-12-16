@@ -18,15 +18,14 @@ public class MediaScene extends Panelbuilder {
     Media m;
     JButton addToList;
     JButton removeFromList;
-    boolean isTitleAdded;
 
     public MediaScene(Framebuilder f, Media m, User user1) {
         this.u = user1;
         this.m = m;
         this.f = f;
+
         mdb = new MediaDatabase();
 
-        isTitleAdded = u.isMediaInList(m);
 
         mainPanel.setLayout(new BorderLayout());
 
@@ -51,7 +50,7 @@ public class MediaScene extends Panelbuilder {
         mediaInfo.setBackground(new Color(205, 118, 19));
         mediaInfo.setLayout(new GridLayout(1, 2));
 
-        // Panel med data om medie,
+        // Panel med informationer om medie,
         JPanel mediaFacts = new JPanel();
         mediaFacts.setBackground(new Color(205, 118, 19));
         mediaFacts.setLayout(new GridBagLayout());
@@ -103,10 +102,10 @@ public class MediaScene extends Panelbuilder {
 
         // ----------Højre side----------------
 
-        JPanel playHolderPanel = new JPanel();
-        playHolderPanel.setBackground(new Color(205, 118, 19));
-        playHolderPanel.setLayout(new GridLayout(1, 1));
-
+        //Indeholder en play-knap, en tilføj til min liste, hvis ens liste er tom, en fjern fra liste, hvis listen ikke er tom og en tilbage-knap
+        JPanel  rightSidePanel = new JPanel();
+        rightSidePanel.setBackground(new Color(205, 118, 19));
+        rightSidePanel.setLayout(new GridLayout(1, 1));
         play = new JButton("Play!");
         play.addActionListener(e -> btnClicked(m));
 
@@ -117,6 +116,8 @@ public class MediaScene extends Panelbuilder {
         goback.setOpaque(true);
         goback.setBackground(new Color(205, 118, 19));
         goback.addActionListener(e -> returnHome());
+
+
         JPanel listBtns = new JPanel();
         listBtns.setBackground(new Color(205, 118, 19));
         listBtns.setLayout(new GridLayout(1, 2));
@@ -149,10 +150,10 @@ public class MediaScene extends Panelbuilder {
         goBackAndAddPanel.add(listBtns);
         goBackAndAddPanel.add(goback);
 
-        playHolderPanel.add(play);
-        playHolderPanel.add(goBackAndAddPanel);
+        rightSidePanel.add(play);
+        rightSidePanel.add(goBackAndAddPanel);
 
-        mediaInfo.add(playHolderPanel);
+        mediaInfo.add(rightSidePanel);
 
         fillPanel.add(mediaHolder);
         fillPanel.add(mediaInfo);
@@ -189,7 +190,7 @@ public class MediaScene extends Panelbuilder {
             play.setText("Press to continue");
         } else {
             mediaHolder.setBackground(new Color(186, 59, 70));
-            isPlayingLabel = new JLabel(mdb.getMediaTitle(m) + " is playing...");
+            isPlayingLabel = new JLabel(m.getTitle() + " is playing...");
             isPlayingLabel.setSize(1500, 800);
             mediaHolder.add(isPlayingLabel, "Center");
             isMediaPlaying = true;

@@ -32,7 +32,9 @@ public class SearchScene extends Panelbuilder {
 
         String searchResult = g;
 
-        JPanel headerPanel = new JPanel(); // Header panel med søgefunktioner mm.
+
+        //--Header panel som indeholder samme funktioner som hos Homepage, bare uden randomMedia og med en tilbageknap i stedet
+        JPanel headerPanel = new JPanel(); 
         headerPanel.setBackground(new Color(255, 226, 194));
         headerPanel.setLayout(new GridLayout(0, 3));
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -43,22 +45,21 @@ public class SearchScene extends Panelbuilder {
         c.insets = new Insets(5, 5, 5, 5);
         mainPanel.add(headerPanel, c);
 
-        // ------------
         JPanel genreMenu = new JPanel();
         genreMenu.setBackground(new Color(255, 226, 194));
         genreMenu.setLayout(new GridLayout(1, 2));
         genreList = new JComboBox<String>(genre);
         genreList.setLayout(new GridLayout(1, 1));
         genreList.setSelectedItem(searchResult);
+        genreList.addActionListener(e -> selectedGenre(u));
+        genreMenu.add(genreList);
+
 
         JButton back = new JButton("Return home");
         back.addActionListener(e -> returnHome(u));
 
-        genreMenu.add(genreList);
         genreMenu.add(back);
         headerPanel.add(genreMenu);
-        // Tilføj metode som ændre siden til at vise film og serier med det givet genre
-        genreList.addActionListener(e -> selectedGenre(u));
         // -----------------------------------------------
 
         // ----------
@@ -101,7 +102,7 @@ public class SearchScene extends Panelbuilder {
         movies.setLayout(new GridLayout(2, 2));
         for (int i = 0; i < mdb.getMovies().size(); i++) {
             Movie m = mdb.getMovies().get(i);
-            if (mdb.getGenre(m).contains(g)) {
+            if (m.getCategories().contains(g)) {
                 image = new ImageIcon(mdb.getPicture(m));
                 button = new JButton(image);
                 button.setOpaque(true);

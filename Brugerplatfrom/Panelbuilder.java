@@ -18,13 +18,10 @@ public class Panelbuilder {
 
     public Panelbuilder() {
 
-        // mdb.loadMedia();
-
         mainPanel = new JPanel();
         mainPanel.setSize(skærmOpløsning.width, skærmOpløsning.height);
         mainPanel.setBackground(new Color(97, 201, 168));
 
-        // mainPanel.setLayout(new BorderLayout());
         mainPanel.setLayout(new GridBagLayout());
 
     }
@@ -33,5 +30,7 @@ public class Panelbuilder {
     public JPanel getPanelbuilder() {
         return mainPanel;
     }
+
+    
 
 }
