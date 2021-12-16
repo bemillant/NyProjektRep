@@ -97,7 +97,7 @@ public class MediaDatabase {
         throw new MediaNotFoundException(name);
     }
 
-    //GetPicture
+    //Outdated getPicture, som kan bruges til viderudvikling af database - tager udgangspunkt i URLer fremfor Strings til ImageIcon
     /* public URL getPicture(Media m) {
         if (m instanceof Movie) {
             java.net.URL imageText = getClass().getResource("/Data/filmplakater/" + m.title + ".jpg");
@@ -108,6 +108,7 @@ public class MediaDatabase {
         }
     } */
 
+    //Sender pathen til billederne, som så bliver brugt i ImageIcon
     public String getPicture(Media m) {
         if (m instanceof Movie) {
             String imageText = "Data/filmplakater/" + m.title + ".jpg";
