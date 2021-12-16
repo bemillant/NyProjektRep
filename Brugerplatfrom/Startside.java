@@ -3,7 +3,6 @@ package Brugerplatfrom;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-//import java.util.EventListener;
 
 import javax.swing.*;
 
@@ -18,7 +17,7 @@ public class Startside extends Panelbuilder implements ActionListener {
         // opretter framet - instiansierer frame
         this.f = f;
 
-        ImageIcon image = new ImageIcon("Data/65525be2aa0a49729e74e924fe7aaa60.png");
+        ImageIcon image = new ImageIcon("/Data/65525be2aa0a49729e74e924fe7aaa60.png");
         JButton btn = new JButton(image);
         GridBagConstraints c = new GridBagConstraints();
         c.anchor = GridBagConstraints.CENTER;
@@ -31,7 +30,6 @@ public class Startside extends Panelbuilder implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        /* f.addPanel(new Home(f, u)); */
     }
 
     public void changeScene(User u) {

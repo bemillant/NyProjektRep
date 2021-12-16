@@ -1,7 +1,5 @@
 package Brugerplatfrom;
 
-//import javax.swing.JFrame;
-
 import Controller.*;
 
 public class Main {

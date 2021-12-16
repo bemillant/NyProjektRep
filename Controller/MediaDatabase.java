@@ -10,8 +10,8 @@ public class MediaDatabase {
     ArrayList<Series> series = new ArrayList<>();
 
     public MediaDatabase(){
-        fr.TextReader("Data/film.txt");
-        fr.TextReader("Data/serier.txt");
+        fr.TextReader("/Data/film.txt");
+        fr.TextReader("/Data/serier.txt");
         movies = fr.getMovies();
         series = fr.getSeries();
     }
@@ -111,10 +111,10 @@ public class MediaDatabase {
     //Sender pathen til billederne, som så bliver brugt i ImageIcon
     public String getPicture(Media m) {
         if (m instanceof Movie) {
-            String imageText = "Data/filmplakater/" + m.title + ".jpg";
+            String imageText = "/Data/filmplakater/" + m.title + ".jpg";
             return (imageText);
         } else {
-            String imageText = "Data/serieforsider/" + m.title + ".jpg";
+            String imageText = "/Data/serieforsider/" + m.title + ".jpg";
             return (imageText);
         }
     }

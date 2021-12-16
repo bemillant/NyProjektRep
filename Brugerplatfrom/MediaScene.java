@@ -1,10 +1,10 @@
 package Brugerplatfrom;
 
-import Controller.*;
-
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
+
+import Controller.*;
 
 public class MediaScene extends Panelbuilder {
 
