@@ -18,7 +18,7 @@ public class Startside extends Panelbuilder implements ActionListener {
         // opretter framet - instiansierer frame
         this.f = f;
 
-        ImageIcon image = new ImageIcon("Brugerplatfrom/65525be2aa0a49729e74e924fe7aaa60.png");
+        ImageIcon image = new ImageIcon("Data/65525be2aa0a49729e74e924fe7aaa60.png");
         JButton btn = new JButton(image);
         GridBagConstraints c = new GridBagConstraints();
         c.anchor = GridBagConstraints.CENTER;
