@@ -48,7 +48,7 @@ public class FileReader {
         }
 
         catch (FileNotFoundException e) {
-            System.out.println(e.getMessage()); // Skal vises visuelt
+            System.out.println(e.getMessage());
         }
     }
 

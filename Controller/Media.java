@@ -1,7 +1,6 @@
 package Controller;
 
 import java.util.*;
-//yay
 
 public abstract class Media {
     protected String title;

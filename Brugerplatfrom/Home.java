@@ -3,6 +3,7 @@ package Brugerplatfrom;
 import javax.swing.*;
 
 import Controller.Media;
+import Controller.MediaNotFoundException;
 import Controller.Movie;
 import Controller.Series;
 import Controller.User;
@@ -118,7 +119,6 @@ public class Home extends Panelbuilder {
 
         if (getUser().getList().size() == 0) {
             JLabel textLabel = new JLabel("Add a title to your list and you'll see it here!");
-            textLabel.setText("Add a title to your list and you'll see it here!");
             myListPanel.add(textLabel);
         } else {
             for (int i = 0; i < getUser().getList().size(); i++) {
@@ -149,8 +149,7 @@ public class Home extends Panelbuilder {
         JPanel mediePanel = new JPanel();
         indhold.add(mediePanel, "Center");
 
-        // ---------------------- Tilføjelse af de to hovedefunktioner - oversigt over
-        // alle film og serier
+        // -------- Tilføjelse af de to hovedefunktioner - oversigt over alle film og serier
         JButton button;
         ImageIcon image;
         JPanel movies = new JPanel();
@@ -202,7 +201,7 @@ public class Home extends Panelbuilder {
         // -----------------
 
     }
-
+    //Giver tilfældigt medie til afspilning
     private void giveRandomMedia(User u) {
         Media m = mdb.getRandomMedia();
         changeSceneMedia(m, u);
@@ -214,20 +213,22 @@ public class Home extends Panelbuilder {
         f.addPanel(new SearchScene(f, g, u));
     }
 
+    //returner useren
     private User getUser() {
         return user1;
-        /*
-         * if (userComboBox.getSelectedItem().equals("User1")) { return user1; } else if
-         * (userComboBox.getSelectedItem().equals("User2")) { return user2; } else {
-         * return user3; }
-         */
     }
 
+    //Søger efter bestemt medie og går til mediesiden hvis fundet
     private void searchTitle(User u) {
         String g = searchBar.getText();
+        try{
         f.addPanel(new MediaScene(f, mdb.search(g), u));
+        } catch (MediaNotFoundException e ){
+            searchBar.setText("The media was not found, try again!");
+        }
     }
 
+    //Skifter til medieside med mediet man klikker på
     private void changeSceneMedia(Media m, User u) {
         f.addPanel(new MediaScene(f, m, u));
 

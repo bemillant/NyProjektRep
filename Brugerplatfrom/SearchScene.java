@@ -123,7 +123,7 @@ public class SearchScene extends Panelbuilder {
         series.setLayout(new GridLayout(2, 2));
         for (int i = 0; i < mdb.getSeries().size(); i++) {
             Series m = mdb.getSeries().get(i);
-            if (mdb.getGenre(m).contains(g)) {
+            if (m.getCategories().contains(g)) {
                 image = new ImageIcon(mdb.getPicture(m));
                 button = new JButton(image);
                 button.setOpaque(true);

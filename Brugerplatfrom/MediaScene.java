@@ -67,13 +67,13 @@ public class MediaScene extends Panelbuilder {
         g.setVgap(10);
         mediaData.setLayout(g);
 
-        JLabel mediaTitle = new JLabel(mdb.getMediaTitle(m));
+        JLabel mediaTitle = new JLabel(m.getTitle());
         mediaData.add(mediaTitle);
-        JLabel mediaGenre = new JLabel(mdb.getGenre(m).toString());
+        JLabel mediaGenre = new JLabel(m.getCategories().toString());
         mediaData.add(mediaGenre);
-        JLabel mediaYear = new JLabel(mdb.getReleaseYear(m));
+        JLabel mediaYear = new JLabel(m.getYear());
         mediaData.add(mediaYear);
-        JLabel mediaRating = new JLabel("" + mdb.getRating(m));
+        JLabel mediaRating = new JLabel("" + m.getRating());
         mediaData.add(mediaRating);
 
         // Hvis mediet er en serie, så skal der også vises sæsoner og episoder
@@ -84,7 +84,7 @@ public class MediaScene extends Panelbuilder {
             GridLayout gl = new GridLayout(0, 1);
             gl.setVgap(10);
             seasonsHolder.setLayout(gl);
-            ArrayList<String> seasons = new ArrayList<String>(mdb.getSeasons(s));
+            ArrayList<String> seasons = new ArrayList<String>(s.getSeason());
             for (int i = 0; i < seasons.size(); i++) {
                 String season = i + 1 + "";
                 String episoder = seasons.get(i);
@@ -130,7 +130,7 @@ public class MediaScene extends Panelbuilder {
 
         if (u.getList().size() >= 1) {
             for (int i = 0; i < u.getList().size(); i++) {
-                if (u.getMediaTitle(u.getList().get(i)).equals(mdb.getMediaTitle(m))) {
+                if (u.getMediaTitle(u.getList().get(i)).equals(m.getTitle())) {
                     removeFromList.setText("Click to remove from list");
                     removeFromList.addActionListener(e -> removeFromList());
                 } else {
@@ -161,20 +161,20 @@ public class MediaScene extends Panelbuilder {
 
     private void addTitleToList() {
         if (u.isMediaInList(m)) {
-            addToList.setText(mdb.getMediaTitle(m) + " is already on your list!");
+            addToList.setText(m.getTitle() + " is already on your list!");
         } else {
             u.addMyList(m);
-            addToList.setText(mdb.getMediaTitle(m) + " has been added to your list!");
+            addToList.setText(m.getTitle() + " has been added to your list!");
         }
     }
 
     private void removeFromList() {
         for (int i = 0; i < u.getList().size(); i++) {
-            if (u.getMediaTitle(u.getList().get(i)).equals(mdb.getMediaTitle(m))) {
+            if (u.getMediaTitle(u.getList().get(i)).equals(m.getTitle())) {
                 u.removeFromList(u.getList().get(i));
             }
         }
-        removeFromList.setText(mdb.getMediaTitle(m) + " has been deleted from your list");
+        removeFromList.setText(m.getTitle() + " has been deleted from your list");
     }
 
     public void returnHome() {
