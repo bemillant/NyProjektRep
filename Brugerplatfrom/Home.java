@@ -3,7 +3,6 @@ package Brugerplatfrom;
 import javax.swing.*;
 
 import Controller.Media;
-//import Controller.MediaDatabase;
 import Controller.MediaNotFoundException;
 import Controller.Movie;
 import Controller.Series;
