@@ -1,7 +1,8 @@
 package Controller;
 
-import Brugerplatfrom.*;
 import javax.swing.*;
+
+import Brugergrænseflade.*;
 
 
 public class Controller {

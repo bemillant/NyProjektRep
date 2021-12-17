@@ -1,4 +1,4 @@
-package Brugerplatfrom;
+package Brugergrænseflade;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
